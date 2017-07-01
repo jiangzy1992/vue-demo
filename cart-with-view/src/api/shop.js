@@ -1,4 +1,4 @@
-const _details = [
+const _details = [{
 	iPhone6S: {
 	  name: 'Apple/苹果 iPhone 6S',
 	  desc: '3D Touch、1200万像素照片、4k视频，强大功能于一身。',
@@ -16,10 +16,11 @@ const _details = [
 		'128GB': 6888
 	  }
 	}
-]
+}]
 
 export default {
-	getDetails(cb) {
-		setTimeout(() => cb(_details), 100)
+	getDetails (cb) {
+		console.log(cb)
+		return cb(_details)
 	}
 }

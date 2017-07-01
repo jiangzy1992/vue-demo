@@ -3,10 +3,10 @@ import * as types from '../mutation-types'
 const state = {
 	added: [],  //[{name, style, size, price, quantity}]
 }
-
-const getters = {
-	cartProduct: state => state.added
-}
+// 
+// const getters = {
+// 	
+// }
 
 const actions = {
 	removeItem ({ commit }, item) {
@@ -25,6 +25,6 @@ const mutations = {
 
 export default {
 	state,
-	getters,
+	actions,
 	mutations
 }

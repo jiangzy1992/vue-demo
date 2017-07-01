@@ -17,7 +17,9 @@ const getters = {
 
 const actions = {
 	getAllDetails({ commit }) {
-		shop.getDetails( details => commit(types.PRODUCT_DETAILS, { details }))
+		shop.getDetails( details => {
+			commit(types.PRODUCT_DETAILS, { details })
+		})
 	},
 	changeStyle({ commit }, style, styleUrl) {
 		commit(types.CHANGE_STYLE, style, styleUrl)
@@ -31,6 +33,10 @@ const actions = {
 }
 
 const mutations = {
+	[types.PRODUCT_DETAILS] (state, { details }) {
+		state.all = details
+	},
+	
 	[types.ADD_TO_CART] (state) {
 		const name = state.all.name
 		const style = state.activeStyle === null ? "银色" :  state.activeStyle
@@ -53,10 +59,6 @@ const mutations = {
 		}
 	},
 	
-	[types.PRODUCT_DETAILS] (state, { details }) {
-		state.all = details
-	},
-	
 	[types.CHANGE_STYLE] (state, style, styleUrl) {
 		state.activeStyle = style
 		state.activeStyleUrl = styleUrl
@@ -70,4 +72,11 @@ const mutations = {
 	[types.IS_SELECTED] (state) {
 		state.isSelected = ture
 	}
+}
+
+export default {
+	state,
+	getters,
+	actions,
+	mutations
 }

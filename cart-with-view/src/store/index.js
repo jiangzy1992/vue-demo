@@ -1,15 +1,21 @@
-import vue from 'Vue'
-import vuex from 'Vuex'
+import Vue from 'vue'
+import Vuex from 'vuex'
 import * as actions from './actions'
 import * as getters from './getters'
-import product from './modules/product'
+import cart from './modules/Cart'
+import product from './modules/Product'
 
-vue.ues(vuex)
 
-export default new vuex.Store({
+Vue.use(Vuex)
+
+const debug = process.env.NODE_ENV !== 'production'
+
+export default new Vuex.Store({
 	actions,
 	getters,
 	modules: {
+		cart,
 		product
-	}
+	},
+	strict: debug
 })

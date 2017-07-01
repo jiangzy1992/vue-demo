@@ -58,10 +58,12 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-	computed: ...mapGetters ({
-		details: 'getAllDetails',
-		isSelected: 'buttonSelected'
-	}),
+	computed: {
+		...mapGetters ({
+			details: 'productDetails',
+			isSelected: 'buttonSelected'
+		})
+	},
 	methods: {
 		...mapActions ([
 			'changeStyle',
