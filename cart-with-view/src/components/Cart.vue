@@ -5,13 +5,14 @@
 	  		<span class="glyphicon glyphicon-shopping-cart"></span>购物车
 	  	</div>
 		<div class="panel-body">
-			<ul v-for="">
-				<input type="checkbox" :value="price">
-				<span>{{name}}</span>
-				<span>{{type}}</span>
-				<span class="badge text-danger">{{count}}</span>
-				<span class="pullright">{{price}}</span>
-				<span class="pullright glyphicon glyphicon-remove-circle" @click=""></span>
+			<ul v-for="item in cart">
+				<input type="checkbox" :value="item.price">
+				<span class="">{{item.name}}</span>
+				<span class="label label-primary">{{item.style}}</span>
+				<span class="label label-info">{{item.size}}</span>
+				<span class="badge text-danger">{{item.quantity}}</span>
+				<span class="pullright glyphicon glyphicon-remove-circle" @click="removeItem(item)"></span>
+				<span class="pullright">{{item.price}}</span>
 			</ul>
 		</div>
 		<div class="input-group">
@@ -29,8 +30,19 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-	
+	computed: {
+		mapGetters({
+			cart: 'cartProduct'
+		})
+	},
+	methods: {
+		mapActions([
+			'removeItem'
+		])
+	}
 }
 </script>
 
