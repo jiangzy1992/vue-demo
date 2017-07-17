@@ -5,6 +5,7 @@
 ## Build Setup
 
 ``` bash
+cd cart-with-view
 # install dependencies
 npm install
 

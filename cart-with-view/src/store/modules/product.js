@@ -2,9 +2,9 @@ import shop from '../../api/shop'
 import * as types from '../mutation-types'
 
 const state = {
-	all:[],
+	all:{},
 	activeStyle: null,
-	activeStyleUrl: null,
+	activeStyleUrl: 'http://o8yu724qs.bkt.clouddn.com/iphone6s-silver-select-2015.png',
 	activeSize: null,
 	productPrice: null,
 	isSelected: false
@@ -12,7 +12,8 @@ const state = {
 
 const getters = {
 	productDetails: state => state.all,
-	buttonSelected: state => state.isSelected
+	buttonSelected: state => state.isSelected,
+	activeStyleUrl: state => state.activeStyleUrl
 }
 
 const actions = {
@@ -21,12 +22,15 @@ const actions = {
 			commit(types.PRODUCT_DETAILS, { details })
 		})
 	},
+	
 	changeStyle({ commit }, style, styleUrl) {
 		commit(types.CHANGE_STYLE, style, styleUrl)
 	},
+	
 	changePrice({ commit }, price) {
 		commit(types.CHANGE_PRICE, price)
 	},
+	
 	selected({ commit }) {
 		commit(types.IS_SELECTED)
 	}
@@ -70,7 +74,7 @@ const mutations = {
 	},
 	
 	[types.IS_SELECTED] (state) {
-		state.isSelected = ture
+		state.isSelected = true
 	}
 }
 

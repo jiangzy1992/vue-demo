@@ -5,43 +5,51 @@
 				<div class="row">
 					<!-- iPhone6S picture -->
 					<div class="product-pic col-md-6 col-sm-6">
-						<img src="details.activeStyleUrl">
+						<img :src="activeStyleUrl" class="img-responsive">
 					</div>
 					<!-- iPhone6S details -->
 					<div class="product-details col-md-6 col-sm-6">
 						<h3>{{details.name}}</h3>
 						<hr>
 						<div class="details">
-							<dl class="options">
-								<dt>描述:</dt>
-								<dd>{{ details.desc }}</dd>
-							</dl>
-							<dl class="options">
-								<dt>价格:</dt>
-								<dd>{{ details.price }}</dd>
-							</dl>
-							<dl class="options">
-								<dt>外观:</dt>
-								<dd>
-									<ul>
-										<li v-for="{ value, key } in details.style" 
-											@click="changeStyle(key, value)" 
-											:class="{active: details.activeStyleUrl = value}"
-										>{{ key }}</li>
-									</ul>
-								</dd>
-							</dl>
-							<dl class="options">
-								<dt>储存容量:</dt>
-								<dd>
-									<ul>
-										<li v-for="{ value, key } in details.size"
-											@click="changePrice(key, value); selected()"
-											:class="{active: details.price = value}"
-										>{{ key }}</li>
-									</ul>
-								</dd>
-							</dl>
+							<div class="options">
+								<dl class="dl-horizontal">
+									<dt>描述:</dt>
+									<dd>{{ details.desc }}</dd>
+								</dl>
+							</div>
+							<div class="options">
+								<dl class="dl-horizontal">
+									<dt>价格:</dt>
+									<dd>{{ details.price }}</dd>
+								</dl>
+							</div>
+							<div class="options">
+								<dl class="dl-horizontal">
+									<dt>外观:</dt>
+									<dd>
+										<ul>
+											<li v-for="(value, key) in details.style" 
+												@click="changeStyle(key, value)" 
+												:class="{active: details.activeStyleUrl = value}"
+											>{{ key }}</li>
+										</ul>
+									</dd>
+								</dl>
+							</div>
+							<div class="options">
+								<dl class="dl-horizontal">
+									<dt>储存容量:</dt>
+									<dd>
+										<ul>
+											<li v-for="(value, key) in details.size"
+												@click="changePrice(key, value); selected()"
+												:class="{active: details.price = value}"
+											>{{ key }}</li>
+										</ul>
+									</dd>
+								</dl>
+							</div>
 						</div>
 						<hr>
 						<button class="btn btn-danger btn-clock" disabled="isSelected" @click="addToCart()">
@@ -61,7 +69,8 @@ export default {
 	computed: {
 		...mapGetters ({
 			details: 'productDetails',
-			isSelected: 'buttonSelected'
+			isSelected: 'buttonSelected',
+			activeStyleUrl: 'activeStyleUrl'
 		})
 	},
 	methods: {

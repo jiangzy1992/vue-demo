@@ -1,7 +1,7 @@
 import * as types from '../mutation-types'
 
 const state = {
-	added: [],  //[{name, style, size, price, quantity}]
+	added: {},  //{name, style, size, price, quantity}
 }
 // 
 // const getters = {
