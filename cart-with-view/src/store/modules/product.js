@@ -3,17 +3,20 @@ import * as types from '../mutation-types'
 
 const state = {
 	all:{},
-	activeStyle: null,
+	activeStyle: '银色',
 	activeStyleUrl: 'http://o8yu724qs.bkt.clouddn.com/iphone6s-silver-select-2015.png',
 	activeSize: null,
-	productPrice: null,
-	isSelected: false
+	productPrice: '5288 - 6888',
+	isSelected: true
 }
 
 const getters = {
 	productDetails: state => state.all,
-	buttonSelected: state => state.isSelected,
-	activeStyleUrl: state => state.activeStyleUrl
+	aStyle: state => state.activeStyle,
+	aStyleUrl: state => state.activeStyleUrl,
+	aSize: state => state.activeSize,
+	pdPrice: state => state.productPrice,
+	buttonSelected: state => state.isSelected
 }
 
 const actions = {
@@ -22,15 +25,12 @@ const actions = {
 			commit(types.PRODUCT_DETAILS, { details })
 		})
 	},
-	
-	changeStyle({ commit }, style, styleUrl) {
-		commit(types.CHANGE_STYLE, style, styleUrl)
+	changeStyle({ commit }, style) {
+		commit(types.CHANGE_STYLE, style)
 	},
-	
-	changePrice({ commit }, price) {
-		commit(types.CHANGE_PRICE, price)
+	changePrice({ commit }, size) {
+		commit(types.CHANGE_PRICE, size)
 	},
-	
 	selected({ commit }) {
 		commit(types.IS_SELECTED)
 	}
@@ -41,40 +41,18 @@ const mutations = {
 		state.all = details
 	},
 	
-	[types.ADD_TO_CART] (state) {
-		const name = state.all.name
-		const style = state.activeStyle === null ? "银色" :  state.activeStyle
-		const size = state.activeSize
-		const price = state.productPrice
-		
-		const record = state.cart.added.find(d => {
-			return d.style === style && d.size === size
-		})
-		if (!record) {
-			state.cart.added.push({
-				name,
-				style,
-				size,
-				price,
-				quantity: 1
-			})
-		} else {
-			quantity++
-		}
+	[types.CHANGE_STYLE] (state, style) {
+		state.activeStyle = style.key
+		state.activeStyleUrl = style.value
 	},
 	
-	[types.CHANGE_STYLE] (state, style, styleUrl) {
-		state.activeStyle = style
-		state.activeStyleUrl = styleUrl
-	},
-	
-	[types.CHANGE_PRICE] (state, size, price) {
-		state.productPrice = price
-		state.activeSize = size
+	[types.CHANGE_PRICE] (state, size) {
+		state.productPrice = size.value
+		state.activeSize = size.key
 	},
 	
 	[types.IS_SELECTED] (state) {
-		state.isSelected = true
+		state.isSelected = false
 	}
 }
 
